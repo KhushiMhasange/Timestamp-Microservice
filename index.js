@@ -21,9 +21,8 @@ app.get("/", function (req, res) {
 // your first API endpoint... 
 app.get("/api/:date", function (req, res) {
   const ipdate = req.params.date;
+  if(ipdate==="") ipdate = Date.now();
   const date = new Date(ipdate);
-  if(!date) date = Date.now();
-  console.log(date);
   if(isNaN(date.getTime()) || isNaN(date)){
     return res.json({error:"Invalid Date"});
   }
